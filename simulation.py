@@ -24,14 +24,14 @@ class Table:
                 self.e.insert(END, self.lst[i][j])
 
     def __init__(self, root):
-        self.lst = [['Time', -1], 
-           ['Height', -1], 
-           ['# of Bounces', -1], 
-           ['Velocity', -1], 
-           ['Momentum', -1], 
-           ['Kinetic Energy', -1], 
-           ['Potential Energy', -1], 
-           ['Mechanical Energy', -1]]
+        self.lst = [['Time', -1, 's'], 
+           ['Height', -1, 'm'], 
+           ['# of Bounces', -1,], 
+           ['Velocity', -1, 'm / s'], 
+           ['Momentum', -1, 'kg * m / s'], 
+           ['Kinetic Energy', -1, 'J'], 
+           ['Potential Energy', -1, 'J'], 
+           ['Mechanical Energy', -1, 'J']]
         self.root = root
         self.draw()
 

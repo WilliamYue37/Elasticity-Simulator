@@ -14,8 +14,8 @@ class Simulation(Frame):
         self.pack(fill=BOTH, expand=1)
 
         canvas = Canvas(self)
-        #canvas.create_oval(10, 10, 80, 80, outline="#f11", fill="#1f1", width=2)
-        canvas.create_rectangle(0, 100, 800, 60, outline="#f11", fill="#1f1", width=2)
+        canvas.create_oval(350, 50, 450, 150, outline="#000000", fill="#000000", width=2)
+        canvas.create_rectangle(0, 600, 800, 800, outline="#000000", fill="#75381a", width=2)
 
         canvas.pack(fill=BOTH, expand=1)
 

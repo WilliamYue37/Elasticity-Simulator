@@ -54,6 +54,7 @@ v_after = sqrt(2 * g * height)
 radius = 50
 totalTime = 0
 lastDrop = -1
+iterations = 0
 while True:
     if numBounces == 0:
         height = dropHeight - 1/2 * g * totalTime**2
@@ -67,7 +68,7 @@ while True:
     velocity = sqrt(max(v_after ** 2 - 2 * g * (height - radius), 0))
     KE = 1/2 * mass * velocity**2
     PE = mass * g * (height - radius)
-    table.update([totalTime, height - radius, numBounces, velocity, mass * velocity, KE, PE, KE + PE])
+    if iterations % 2 == 0: table.update([totalTime, height - radius, numBounces, velocity, mass * velocity, KE, PE, KE + PE])
     canvas.update()
 
     if height == radius:
@@ -76,7 +77,8 @@ while True:
         v_after *= sqrt(elasticity)
     totalTime += 0.5
     time.sleep(0.05)
-    if v_after < 1e-3: break
+    iterations += 1
+    if v_after < 1: break
 
 print('done')
 

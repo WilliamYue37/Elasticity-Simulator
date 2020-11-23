@@ -7,9 +7,39 @@ mGui.geometry('1000x1000+100+100')
 
 canvas = Canvas(mGui,height=1000,width=1000,bg='white')
 canvas.create_rectangle(0, 800, 1000, 1000, outline="#000000", fill="#75381a", width=2)
-canvas.pack()
+canvas.grid(row=0, column=0, rowspan=1000)
 
-canvas.pack()
+class Table: 
+      
+    def __init__(self,root): 
+          
+        # code for creating table 
+        for i in range(total_rows): 
+            for j in range(total_columns): 
+                  
+                self.e = Entry(root, width=20, fg='blue', 
+                               font=('Arial',16,'bold')) 
+                  
+                self.e.grid(row=i, column=j + 1)
+                self.e.insert(END, lst[i][j]) 
+  
+# take the data 
+lst = [('Time', 19), 
+       ('Height', 19), 
+       ('# of Bounces', 19), 
+       ('Velocity', 19), 
+       ('Momentum', 19), 
+       ('Kinetic Energy', 19), 
+       ('Potential Energy', 19), 
+       ('Mechanical Energy', 19)]
+   
+# find total number of rows and 
+# columns in list 
+total_rows = len(lst) 
+total_columns = len(lst[0]) 
+   
+# create root window 
+t = Table(mGui) 
 
 preID = None
 numBounces = 0

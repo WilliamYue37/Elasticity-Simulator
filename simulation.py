@@ -34,11 +34,18 @@ class Parameters:
         self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
         self.e.grid(row=0 + 300, column=0 + 1)
         self.e.insert(END, self.lst[0][0])
+        self.e.config(state=DISABLED)
+
+        self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
+        self.e.grid(row=0 + 300, column=1 + 1)
+        self.e.insert(END, self.lst[0][1])
+        self.e.config(state=DISABLED)
 
         # Mass
         self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
         self.e.grid(row=1 + 300, column=0 + 1)
         self.e.insert(END, self.lst[1][0])
+        self.e.config(state=DISABLED)
 
         self.mass = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
         self.mass.grid(row=1 + 300, column=1 + 1)
@@ -47,11 +54,13 @@ class Parameters:
         self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
         self.e.grid(row=1 + 300, column=2 + 1)
         self.e.insert(END, self.lst[1][2])
+        self.e.config(state=DISABLED)
 
         # Elasticity
         self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
         self.e.grid(row=2 + 300, column=0 + 1)
         self.e.insert(END, self.lst[2][0])
+        self.e.config(state=DISABLED)
 
         self.elas = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
         self.elas.grid(row=2 + 300, column=1 + 1)
@@ -61,6 +70,7 @@ class Parameters:
         self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
         self.e.grid(row=3 + 300, column=0 + 1)
         self.e.insert(END, self.lst[3][0])
+        self.e.config(state=DISABLED)
 
         self.height = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
         self.height.grid(row=3 + 300, column=1 + 1)
@@ -69,9 +79,10 @@ class Parameters:
         self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
         self.e.grid(row=3 + 300, column=2 + 1)
         self.e.insert(END, self.lst[3][2])
+        self.e.config(state=DISABLED)
 
     def __init__(self, root):
-        self.lst = [['Initial Parameters'], 
+        self.lst = [['Initial Parameters', 'Enter Values:'], 
            ['Mass', -1, 'kg'],
            ['Elasticity', -1], 
            ['Initial Height', -1, 'm']]
@@ -80,6 +91,16 @@ class Parameters:
 
     def read(self):
         return float(self.mass.get()), float(self.elas.get()), float(self.height.get());
+
+    def enableTxt(self):
+        self.mass.config(state=NORMAL)
+        self.elas.config(state=NORMAL)
+        self.height.config(state=NORMAL)
+
+    def disableTxt(self):
+        self.mass.config(state=DISABLED)
+        self.elas.config(state=DISABLED)
+        self.height.config(state=DISABLED)
 
 param = Parameters(gui)
 
@@ -90,6 +111,7 @@ class Table:
                 self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold'))   
                 self.e.grid(row=i, column=j + 1)
                 self.e.insert(END, self.lst[i][j])
+                self.e.config(state=DISABLED)
 
     def __init__(self, root):
         self.lst = [['Time', -1, 's'], 

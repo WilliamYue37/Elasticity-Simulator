@@ -11,43 +11,22 @@ canvas = Canvas(mGui, height=floor, width=1000, bg='white')
 canvas.grid(row=0, column=0, rowspan=1000)
 
 paused = False
-button = Button(text="Start", width=25, height=5, bg="green", fg="white")
-resetButton = Button(text="Reset", width=25, height=5, bg="red", fg="white")
 def buttonStart():
-    print("Start/Stop")
+    global paused
+    if paused:
+        startStopButton.config(text="Start", bg="green")
+        paused = False
+    else:
+        startStopButton.config(text="Stop", bg="red")
+        paused = True
 def buttonReset():
     print("reset")
 
-button.grid(row=925, column=1) #start/stop
+startStopButton = Button(text="Start", width=25, height=5, bg="green", fg="white", command = buttonStart)
+resetButton = Button(text="Reset", width=25, height=5, bg="grey", fg="white", command = buttonReset)
+
+startStopButton.grid(row=925, column=1) #start/stop
 resetButton.grid(row=925, column=2) #reset
-
-class Parameters:
-    def draw(self):
-        # code for creating table 
-        for i in range(len(self.lst)): 
-            for j in range(len(self.lst[i])): 
-                  
-                self.e = Entry(self.root, width=20, fg='blue', 
-                               font=('Arial',16,'bold')) 
-                  
-                self.e.grid(row=i + 300, column=j + 1)
-                self.e.insert(END, self.lst[i][j])
-
-    def __init__(self, root):
-        self.lst = [['Initial Parameters'], 
-           ['Mass', -1], 
-           ['Elasticity', -1], 
-           ['Initial Height', -1]]
-        self.root = root
-        self.draw()
-
-    def update(self, *args):
-        for i in range(len(self.lst)):
-            self.lst[i][1] = args[0][i]
-        self.draw()
-
-# create root window
-table = Parameters(mGui)
 
 class Table:
     def draw(self):

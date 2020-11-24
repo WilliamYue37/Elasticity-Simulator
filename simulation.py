@@ -24,10 +24,8 @@ resetButton.grid(row=925, column=2) #reset
 class Parameters:
     def draw(self):
         for i in range(len(self.lst)): 
-            for j in range(len(self.lst[i])): 
-                  
+            for j in range(len(self.lst[i])):
                 self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold')) 
-                  
                 self.e.grid(row=i + 300, column=j + 1)
                 self.e.insert(END, self.lst[i][j])
 
@@ -49,11 +47,8 @@ table = Parameters(gui)
 class Table:
     def draw(self):
         for i in range(len(self.lst)): 
-            for j in range(len(self.lst[i])): 
-                  
-                self.e = Entry(self.root, width=20, fg='blue', 
-                               font=('Arial',16,'bold')) 
-                  
+            for j in range(len(self.lst[i])):   
+                self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold'))   
                 self.e.grid(row=i, column=j + 1)
                 self.e.insert(END, self.lst[i][j])
 

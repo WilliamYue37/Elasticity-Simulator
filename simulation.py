@@ -96,7 +96,7 @@ def startReset():
         startResetButton.config(text="Reset", bg="red")
         started = True
         param.disableTxt()
-        run(mass = 10, elasticity = 0.8, dropHeight = 900)
+        run(*param.read())
     else:
         global preID
         canvas.delete(preID)

@@ -10,39 +10,6 @@ floor = 1000
 canvas = Canvas(gui, height=floor, width=1000, bg='white')
 canvas.grid(row=0, column=0, rowspan=1000)
 
-preID = None
-
-started = False
-paused = False
-var = IntVar()
-def startReset():
-    global started
-    if not started:
-        startResetButton.config(text="Reset", bg="red")
-        started = True
-        run(mass = 10, elasticity = 0.8, dropHeight = 900)
-    else:
-        global preID
-        canvas.delete(preID)
-        startResetButton.config(text="Start", bg="green")
-        started = False
-def pausePlay():
-    global paused
-    if not paused:
-        pausePlayButton.config(text="Play")
-        paused = True
-        pausePlayButton.wait_variable(var)
-    else:
-        var.set(1)
-        pausePlayButton.config(text="Pause")
-        paused = False
-
-startResetButton = Button(text="Start", width=25, height=5, bg="green", fg="white", command = startReset)
-pausePlayButton = Button(text="Pause", width=25, height=5, bg="grey", fg="white", command = pausePlay)
-
-startResetButton.grid(row=925, column=1) #Start/reset
-pausePlayButton.grid(row=925, column=2) #Pause/Play
-
 class Parameters:
     def draw(self):
         # Initial Parameters
@@ -116,8 +83,42 @@ class Parameters:
         self.mass.config(state=DISABLED)
         self.elas.config(state=DISABLED)
         self.height.config(state=DISABLED)
-
 param = Parameters(gui)
+
+preID = None
+
+started = False
+paused = False
+var = IntVar()
+def startReset():
+    global started
+    if not started:
+        startResetButton.config(text="Reset", bg="red")
+        started = True
+        param.disableTxt()
+        run(mass = 10, elasticity = 0.8, dropHeight = 900)
+    else:
+        global preID
+        canvas.delete(preID)
+        startResetButton.config(text="Start", bg="green")
+        started = False
+        param.enableTxt()
+def pausePlay():
+    global paused
+    if not paused:
+        pausePlayButton.config(text="Play")
+        paused = True
+        pausePlayButton.wait_variable(var)
+    else:
+        var.set(1)
+        pausePlayButton.config(text="Pause")
+        paused = False
+
+startResetButton = Button(text="Start", width=25, height=5, bg="green", fg="white", command = startReset)
+pausePlayButton = Button(text="Pause", width=25, height=5, bg="grey", fg="white", command = pausePlay)
+
+startResetButton.grid(row=925, column=1) #Start/reset
+pausePlayButton.grid(row=925, column=2) #Pause/Play
 
 class Table:
     def draw(self):

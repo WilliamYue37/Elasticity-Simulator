@@ -65,9 +65,9 @@ class Parameters:
 
     def __init__(self, root):
         self.lst = [['Initial Parameters', 'Enter Values:'], 
-           ['Mass', -1, 'kg'],
-           ['Elasticity', -1], 
-           ['Initial Height', -1, 'm']]
+           ['Mass', 10, 'kg'],
+           ['Elasticity', 0.5], 
+           ['Initial Height', 900, 'm']]
         self.root = root
         self.draw()
 

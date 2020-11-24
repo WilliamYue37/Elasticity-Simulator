@@ -4,12 +4,22 @@ from math import *
 
 mGui = Tk()
 mGui.title('Elasticity Simulation')
-mGui.geometry('1000x1000+100+100')
+mGui.geometry('1600x1000+10+10')
 
 floor = 1000
 canvas = Canvas(mGui, height=floor, width=1000, bg='white')
-canvas.create_rectangle(0, 1000, 1000, floor, outline="#000000", fill="#75381a")
 canvas.grid(row=0, column=0, rowspan=1000)
+
+paused = False
+button = Button(text="Start", width=25, height=5, bg="green", fg="white")
+resetButton = Button(text="Reset", width=25, height=5, bg="red", fg="white")
+def buttonStart():
+    print("Start/Stop")
+def buttonReset():
+    print("reset")
+
+button.grid(row=925, column=1) #start/stop
+resetButton.grid(row=925, column=2) #reset
 
 class Table:
     def draw(self):

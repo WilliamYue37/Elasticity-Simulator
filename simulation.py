@@ -11,14 +11,21 @@ canvas = Canvas(gui, height=floor, width=1000, bg='white')
 canvas.grid(row=0, column=0, rowspan=1000)
 
 paused = False
-button = Button(text="Start", width=25, height=5, bg="green", fg="white")
-resetButton = Button(text="Reset", width=25, height=5, bg="red", fg="white")
 def buttonStart():
-    print("Start/Stop")
+    global paused
+    if paused:
+        startStopButton.config(text="Start", bg="green")
+        paused = False
+    else:
+        startStopButton.config(text="Stop", bg="red")
+        paused = True
 def buttonReset():
     print("reset")
 
-button.grid(row=925, column=1) #start/stop
+startStopButton = Button(text="Start", width=25, height=5, bg="green", fg="white", command = buttonStart)
+resetButton = Button(text="Reset", width=25, height=5, bg="grey", fg="white", command = buttonReset)
+
+startStopButton.grid(row=925, column=1) #start/stop
 resetButton.grid(row=925, column=2) #reset
 
 class Parameters:

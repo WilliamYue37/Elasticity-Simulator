@@ -10,23 +10,38 @@ floor = 1000
 canvas = Canvas(gui, height=floor, width=1000, bg='white')
 canvas.grid(row=0, column=0, rowspan=1000)
 
+preID = None
+
+started = False
 paused = False
-def buttonStart():
-    global paused
-    if paused:
-        startStopButton.config(text="Start", bg="green")
-        paused = False
+var = IntVar()
+def startReset():
+    global started
+    if not started:
+        startResetButton.config(text="Reset", bg="red")
+        started = True
+        run(mass = 10, elasticity = 0.8, dropHeight = 900)
     else:
-        startStopButton.config(text="Stop", bg="red")
+        global preID
+        canvas.delete(preID)
+        startResetButton.config(text="Start", bg="green")
+        started = False
+def pausePlay():
+    global paused
+    if not paused:
+        pausePlayButton.config(text="Play")
         paused = True
-def buttonReset():
-    print("reset")
+        pausePlayButton.wait_variable(var)
+    else:
+        var.set(1)
+        pausePlayButton.config(text="Pause")
+        paused = False
 
-startStopButton = Button(text="Start", width=25, height=5, bg="green", fg="white", command = buttonStart)
-resetButton = Button(text="Reset", width=25, height=5, bg="grey", fg="white", command = buttonReset)
+startResetButton = Button(text="Start", width=25, height=5, bg="green", fg="white", command = startReset)
+pausePlayButton = Button(text="Pause", width=25, height=5, bg="grey", fg="white", command = pausePlay)
 
-startStopButton.grid(row=925, column=1) #start/stop
-resetButton.grid(row=925, column=2) #reset
+startResetButton.grid(row=925, column=1) #Start/reset
+pausePlayButton.grid(row=925, column=2) #Pause/Play
 
 class Parameters:
     def draw(self):
@@ -84,7 +99,7 @@ class Table:
 def run(mass, elasticity, dropHeight):
     table = Table(gui)
 
-    preID = None
+    global preID
     numBounces = 0
     height = dropHeight
     g = 9.8
@@ -93,7 +108,8 @@ def run(mass, elasticity, dropHeight):
     totalTime = 0
     lastDrop = -1
     iterations = 0
-    while True:
+
+    while started:
         if numBounces == 0:
             height = dropHeight - 1/2 * g * totalTime**2
         else:
@@ -117,7 +133,5 @@ def run(mass, elasticity, dropHeight):
         time.sleep(0.05)
         iterations += 1
         if v_after < 1: break
-
-run(mass = 10, elasticity = 0.8, dropHeight = 900)
 
 gui.mainloop()

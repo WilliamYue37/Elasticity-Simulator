@@ -184,7 +184,7 @@ def run(mass, elasticity, dropHeight):
 
         if preID != None: canvas.delete(preID)
         height = max(height, radius)
-        preID = canvas.create_oval(100, (floor - height) - radius, 100 + radius * 2, (floor - height) + radius)
+        preID = canvas.create_oval(100, (floor - height) - radius, 100 + radius * 2, (floor - height) + radius, fill="purple", outline="purple")
         velocity = sqrt(max(v_after ** 2 - 2 * g * (height - radius), 0))
         KE = 1/2 * mass * velocity**2
         PE = mass * g * (height - radius)

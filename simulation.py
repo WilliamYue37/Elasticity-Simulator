@@ -133,10 +133,10 @@ class Table:
     def draw(self):
         for i in range(len(self.lst)): 
             for j in range(len(self.lst[i])):   
-                # self.mat[i][j].config(state=NORMAL)
+                self.mat[i][j].config(state=NORMAL)
                 self.mat[i][j].delete(0, END)
                 self.mat[i][j].insert(END, self.lst[i][j])
-                # self.mat[i][j].config(state=DISABLED)
+                self.mat[i][j].config(state=DISABLED)
 
     def __init__(self, root):
         self.lst = [['Time', 0, 's'], 

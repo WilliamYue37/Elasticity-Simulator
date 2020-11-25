@@ -66,8 +66,8 @@ class Parameters:
     def __init__(self, root):
         self.lst = [['Initial Parameters', 'Enter Values:'], 
            ['Mass', 10, 'kg'],
-           ['Elasticity', 0.5], 
-           ['Initial Height', 900, 'm']]
+           ['Elasticity ([0, 1])', 0.5], 
+           ['Drop Height ([100, 900])', 900, 'm']]
         self.root = root
         self.draw()
 
@@ -179,20 +179,20 @@ def run(mass, elasticity, dropHeight):
             height = dropHeight - 1/2 * g * totalTime**2
         else:
             elapsed = totalTime - lastDrop
-            height = radius + v_after * elapsed - 1/2 * g * elapsed**2
+            height = v_after * elapsed - 1/2 * g * elapsed**2
 
         if preID != None: canvas.delete(preID)
-        height = max(height, radius)
-        preID = canvas.create_oval(100, (floor - height) - radius, 100 + radius * 2, (floor - height) + radius, fill="purple", outline="purple")
-        velocity = sqrt(max(v_after ** 2 - 2 * g * (height - radius), 0))
-        if velocity < 1e-3: velocity = 0
+        height = max(height, 0)
+        preID = canvas.create_oval(100, (floor - height) - radius * 2, 100 + radius * 2, floor - height, fill="purple", outline="purple")
+        velocity = sqrt(max(v_after ** 2 - 2 * g * height, 0))
+        if velocity < 1e-3 and height == 0: velocity = 0
         KE = 1/2 * mass * velocity**2
-        PE = mass * g * (height - radius)
-        if iterations % 2 == 0 or velocity == 0: table.update([totalTime, height - radius, numBounces, velocity, mass * velocity, KE, PE, KE + PE])
-        if velocity == 0: break
+        PE = mass * g * height
+        if iterations % 2 == 0 or velocity == 0 and height == 0: table.update([totalTime, height, numBounces, velocity, mass * velocity, KE, PE, KE + PE])
+        if velocity == 0 and height < 1e-3: break
         canvas.update()
 
-        if height == radius:
+        if height == 0:
             numBounces += 1
             lastDrop = totalTime
             v_after *= sqrt(elasticity)

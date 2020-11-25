@@ -4,7 +4,7 @@ from math import *
 
 gui = Tk()
 gui.title('Elasticity Simulation')
-gui.geometry('1600x1000+10+10')
+gui.geometry('1750x1000+10+10')
 
 floor = 1000
 canvas = Canvas(gui, height=floor, width=1000, bg='white')
@@ -92,27 +92,34 @@ paused = False
 var = IntVar()
 def startReset():
     global started
+    global paused
     if not started:
-        startResetButton.config(text="Reset", bg="red")
         started = True
+        paused = False
+        startResetButton.config(text="Reset", bg="red")
+        pausePlayButton.config(text="Pause")
         param.disableTxt()
         run(*param.read())
     else:
         global preID
         canvas.delete(preID)
-        startResetButton.config(text="Start", bg="green")
         started = False
+        paused = False
+        startResetButton.config(text="Start", bg="green")
+        pausePlayButton.config(text="Pause")
         param.enableTxt()
 def pausePlay():
     global paused
+    global var
     if not paused:
-        pausePlayButton.config(text="Play")
         paused = True
+        pausePlayButton.config(text="Play")
+        var = IntVar()
         pausePlayButton.wait_variable(var)
     else:
-        var.set(1)
-        pausePlayButton.config(text="Pause")
         paused = False
+        pausePlayButton.config(text="Pause")
+        var.set(1)
 
 startResetButton = Button(text="Start", width=25, height=5, bg="green", fg="white", command = startReset)
 pausePlayButton = Button(text="Pause", width=25, height=5, bg="grey", fg="white", command = pausePlay)

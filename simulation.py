@@ -185,7 +185,7 @@ def run(mass, elasticity, dropHeight):
         height = max(height, radius)
         preID = canvas.create_oval(100, (floor - height) - radius, 100 + radius * 2, (floor - height) + radius, fill="purple", outline="purple")
         velocity = sqrt(max(v_after ** 2 - 2 * g * (height - radius), 0))
-        if velocity < 1e-9: velocity = 0
+        if velocity < 1e-3: velocity = 0
         KE = 1/2 * mass * velocity**2
         PE = mass * g * (height - radius)
         if iterations % 2 == 0 or velocity == 0: table.update([totalTime, height - radius, numBounces, velocity, mass * velocity, KE, PE, KE + PE])

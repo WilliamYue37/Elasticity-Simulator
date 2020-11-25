@@ -133,10 +133,10 @@ class Table:
     def draw(self):
         for i in range(len(self.lst)): 
             for j in range(len(self.lst[i])):   
-                self.e = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold'))   
-                self.e.grid(row=i, column=j + 1)
-                self.e.insert(END, self.lst[i][j])
-                self.e.config(state=DISABLED)
+                # self.mat[i][j].config(state=NORMAL)
+                self.mat[i][j].delete(0, END)
+                self.mat[i][j].insert(END, self.lst[i][j])
+                # self.mat[i][j].config(state=DISABLED)
 
     def __init__(self, root):
         self.lst = [['Time', 0, 's'], 
@@ -148,6 +148,13 @@ class Table:
            ['Potential Energy', 0, 'J'], 
            ['Mechanical Energy', 0, 'J']]
         self.root = root
+        self.mat = [[0 for x in range(3)] for y in range(8)]
+        for i in range(len(self.lst)): 
+            for j in range(len(self.lst[i])):   
+                self.mat[i][j] = Entry(self.root, width=20, fg='blue', font=('Arial',16,'bold'))   
+                self.mat[i][j].grid(row=i, column=j + 1)
+                self.mat[i][j].insert(END, self.lst[i][j])
+                self.mat[i][j].config(state=DISABLED)
         self.draw()
 
     def update(self, *args):

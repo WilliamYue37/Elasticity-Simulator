@@ -67,7 +67,7 @@ class Parameters:
         self.lst = [['Initial Parameters', 'Enter Values:'], 
            ['Mass', 10, 'kg'],
            ['Elasticity ([0, 1])', 0.5], 
-           ['Drop Height ([100, 900])', 900, 'm']]
+           ['Drop Height ([0, 900])', 900, 'm']]
         self.root = root
         self.draw()
 

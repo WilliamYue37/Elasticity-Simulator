@@ -93,6 +93,7 @@ var = IntVar()
 def startReset():
     global started
     global paused
+    global table
     if not started:
         started = True
         paused = False
@@ -105,6 +106,7 @@ def startReset():
         canvas.delete(preID)
         started = False
         paused = False
+        table = Table(gui)
         startResetButton.config(text="Start", bg="green")
         pausePlayButton.config(text="Pause")
         param.enableTxt()
@@ -137,14 +139,14 @@ class Table:
                 self.e.config(state=DISABLED)
 
     def __init__(self, root):
-        self.lst = [['Time', -1, 's'], 
-           ['Height', -1, 'm'], 
-           ['# of Bounces', -1,], 
-           ['Velocity', -1, 'm / s'], 
-           ['Momentum', -1, 'kg * m / s'], 
-           ['Kinetic Energy', -1, 'J'], 
-           ['Potential Energy', -1, 'J'], 
-           ['Mechanical Energy', -1, 'J']]
+        self.lst = [['Time', 0, 's'], 
+           ['Height', 0, 'm'], 
+           ['# of Bounces', 0,], 
+           ['Velocity', 0, 'm / s'], 
+           ['Momentum', 0, 'kg * m / s'], 
+           ['Kinetic Energy', 0, 'J'], 
+           ['Potential Energy', 0, 'J'], 
+           ['Mechanical Energy', 0, 'J']]
         self.root = root
         self.draw()
 
@@ -153,9 +155,9 @@ class Table:
             self.lst[i][1] = args[0][i]
         self.draw()
 
+table = Table(gui)
 def run(mass, elasticity, dropHeight):
-    table = Table(gui)
-
+    global table
     global preID
     numBounces = 0
     height = dropHeight

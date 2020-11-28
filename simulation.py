@@ -13,52 +13,52 @@ canvas.grid(row=0, column=0, rowspan=1000)
 class Parameters:
     def draw(self):
         # Initial Parameters
-        self.e = Entry(self.root, width=20, fg='blue', font=('Candara',16,'bold')) 
+        self.e = Entry(self.root, width=20, fg='blue', bg='LightBlue1', font=('Candara',16,'bold')) 
         self.e.grid(row=0 + 300, column=0 + 1)
         self.e.insert(END, self.lst[0][0])
         self.e.config(state=DISABLED)
 
-        self.e = Entry(self.root, width=20, fg='blue', font=('Candara',16,'bold')) 
+        self.e = Entry(self.root, width=20, fg='blue', bg='LightBlue1', font=('Candara',16,'bold')) 
         self.e.grid(row=0 + 300, column=1 + 1)
         self.e.insert(END, self.lst[0][1])
         self.e.config(state=DISABLED)
 
         # Mass
-        self.e = Entry(self.root, width=20, fg='blue', font=('Candara',16,'bold')) 
+        self.e = Entry(self.root, width=20, fg='blue', bg='LightBlue1', font=('Candara',16,'bold')) 
         self.e.grid(row=1 + 300, column=0 + 1)
         self.e.insert(END, self.lst[1][0])
         self.e.config(state=DISABLED)
 
-        self.mass = Entry(self.root, width=20, fg='blue', font=('Candara',16,'bold')) 
+        self.mass = Entry(self.root, width=20, fg='blue', bg='LightBlue1', font=('Candara',16,'bold')) 
         self.mass.grid(row=1 + 300, column=1 + 1)
         self.mass.insert(END, self.lst[1][1])
 
-        self.e = Entry(self.root, width=20, fg='blue', font=('Candara',16,'bold')) 
+        self.e = Entry(self.root, width=20, fg='blue', bg='LightBlue1', font=('Candara',16,'bold')) 
         self.e.grid(row=1 + 300, column=2 + 1)
         self.e.insert(END, self.lst[1][2])
         self.e.config(state=DISABLED)
 
         # Elasticity
-        self.e = Entry(self.root, width=20, fg='blue', font=('Candara',16,'bold')) 
+        self.e = Entry(self.root, width=20, fg='blue', bg='LightBlue1', font=('Candara',16,'bold')) 
         self.e.grid(row=2 + 300, column=0 + 1)
         self.e.insert(END, self.lst[2][0])
         self.e.config(state=DISABLED)
 
-        self.elas = Entry(self.root, width=20, fg='blue', font=('Candara',16,'bold')) 
+        self.elas = Entry(self.root, width=20, fg='blue', bg='LightBlue1', font=('Candara',16,'bold')) 
         self.elas.grid(row=2 + 300, column=1 + 1)
         self.elas.insert(END, self.lst[2][1])
 
         # Initial Height
-        self.e = Entry(self.root, width=20, fg='blue', font=('Candara',16,'bold')) 
+        self.e = Entry(self.root, width=20, fg='blue', bg='LightBlue1', font=('Candara',16,'bold')) 
         self.e.grid(row=3 + 300, column=0 + 1)
         self.e.insert(END, self.lst[3][0])
         self.e.config(state=DISABLED)
 
-        self.height = Entry(self.root, width=20, fg='blue', font=('Candara',16,'bold')) 
+        self.height = Entry(self.root, width=20, fg='blue', bg='LightBlue1', font=('Candara',16,'bold')) 
         self.height.grid(row=3 + 300, column=1 + 1)
         self.height.insert(END, self.lst[3][1])
 
-        self.e = Entry(self.root, width=20, fg='blue', font=('Candara',16,'bold')) 
+        self.e = Entry(self.root, width=20, fg='blue', bg='LightBlue1', font=('Candara',16,'bold')) 
         self.e.grid(row=3 + 300, column=2 + 1)
         self.e.insert(END, self.lst[3][2])
         self.e.config(state=DISABLED)
@@ -98,7 +98,7 @@ def startReset():
         started = True
         paused = False
         startResetButton.config(text="Reset", bg="red")
-        pausePlayButton.config(text="Pause")
+        pausePlayButton.config(text="Pause",bg="grey")
         param.disableTxt()
         run(*param.read())
     else:
@@ -107,24 +107,24 @@ def startReset():
         started = False
         paused = False
         table = Table(gui)
-        startResetButton.config(text="Start", bg="green")
-        pausePlayButton.config(text="Pause")
+        startResetButton.config(text="Start", bg="blue")
+        pausePlayButton.config(text="Pause", bg="grey")
         param.enableTxt()
 def pausePlay():
     global paused
     global var
     if not paused:
         paused = True
-        pausePlayButton.config(text="Play")
+        pausePlayButton.config(text="Play", bg="green")
         var = IntVar()
         pausePlayButton.wait_variable(var)
     else:
         paused = False
-        pausePlayButton.config(text="Pause")
+        pausePlayButton.config(text="Pause", bg="grey")
         var.set(1)
 
-startResetButton = Button(text="Start", width=25, height=5, bg="green", fg="white", command = startReset)
-pausePlayButton = Button(text="Pause", width=25, height=5, bg="grey", fg="white", command = pausePlay)
+startResetButton = Button(text="Start", width=25, height=5, bg="blue", fg="white", font=('Candara', 11, 'bold'), command = startReset)
+pausePlayButton = Button(text="Pause", width=25, height=5, bg="grey", fg="white", font=('Candara', 11, 'bold'), command = pausePlay)
 
 startResetButton.grid(row=925, column=1) #Start/reset
 pausePlayButton.grid(row=925, column=2) #Pause/Play

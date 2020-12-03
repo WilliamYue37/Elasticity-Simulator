@@ -12,7 +12,7 @@ The purpose of this simulation is to model the process of a ball with a certain 
 
 To install the program clone the repository to a local folder using: 
 
-`git clone`
+`git clone https://github.com/WilliamYue37/Elasticity-Simulator.git`
 
 Then run the program by entering:
 

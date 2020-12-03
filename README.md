@@ -28,4 +28,4 @@ To reset the simulation after starting it, press the "Reset" button.
 ## Limitations
 The simulation assumes that the ball is being dropped in a vaccum, i.e. air resistance is not considered.
 
-Once the ball bounces enough that it's velocity goes below 10^-3 the ball is stopped and the simulation ends. In reality, a ball bouncing in a vacuum would bounce infinitely. 
+Once the ball bounces enough that it's velocity goes below 10<sup>-3</sup> the ball is stopped and the simulation ends. In reality, a ball bouncing in a vacuum would bounce infinitely. 

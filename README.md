@@ -9,14 +9,17 @@ The purpose of this simulation is to model the process of a ball with a certain 
 - Total mechanical energy 
 
 ## Installation
-
 To install the program clone the repository to a local folder using: 
 
 `git clone https://github.com/WilliamYue37/Elasticity-Simulator.git`
 
-Then run the program by entering:
+Enter the repository folder using:
 
-`simulation.py`
+`cd Elasticity-Simulator`
+
+Then run the program by using the command:
+
+`py simulation.py`
   
 ## Running the Simulation
 Enter the starting values (Mass, Elasticity, and Initial Height) into the table on the right and then press "Start".

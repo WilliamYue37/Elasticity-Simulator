@@ -19,7 +19,7 @@ Enter the repository folder using:
 
 Then run the program by using the command:
 
-`py simulation.py`
+`python simulation.py`
   
 ## Running the Simulation
 Enter the starting values (Mass, Elasticity, and Initial Height) into the table on the right and then press "Start".
